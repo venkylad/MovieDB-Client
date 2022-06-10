@@ -7,6 +7,8 @@ import Jumbotron from "./Jumbotron";
 const SliderCarousel = ({ trending }) => {
   const customeSlider = useRef();
   const settings = {
+    lazyLoad: true,
+    fade: true,
     dots: true,
     infinite: true,
     autoplay: true,

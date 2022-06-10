@@ -4,6 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import Card from "../../../Components/Card";
 import Jumbotron from "../../../Components/Jumbotron";
+import RecommendSlider from "../../../Components/RecommendSlider";
 
 const Movie = ({ data, video, recommend, credits }) => {
   const [isOpen, setOpen] = useState(false);
@@ -69,16 +70,12 @@ const Movie = ({ data, video, recommend, credits }) => {
       <h2 className="w-full h-full pl-10 mt-6 text-2xl font-semibold md:text-3xl">
         More Like This
       </h2>
-      <div className="flex space-x-4 md:space-x-8 py-10 md:py-12 pl-4 md:pl-10 overflow-scroll scrollbar-hide drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]">
-        {recommend?.slice(0, 10)?.map((movie, i) => (
-          <div key={i}>
-            <Card
-              movie={movie}
-              hoverCard={hoverCard}
-              setHoverCard={setHoverCard}
-            />
-          </div>
-        ))}
+      <div className="">
+        <RecommendSlider
+          recommend={recommend}
+          hoverCard={hoverCard}
+          setHoverCard={setHoverCard}
+        />
       </div>
     </div>
   );
