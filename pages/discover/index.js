@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "../../Components/Card";
 import Pagination from "../../Components/Pagination";
 import MyLoader from "../../Components/CardLoader";
 import SliderCarousel from "../../Components/SliderCarousel";
 import { API_URL } from "../../utils/data";
+import { Context } from "../../Context/Context";
 
 const Discover = ({ data, trending }) => {
   const [movies, setMovies] = useState(data?.results);
@@ -11,11 +12,12 @@ const Discover = ({ data, trending }) => {
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  const { addToWishlist } = useContext(Context);
+
   const fetchMovies = async () => {
     setLoading(true);
     const res = await fetch(`${API_URL}/discover/${pageNum}`);
     const data = await res.json();
-    console.log(data, "Called");
     setMovies(data?.results);
     setLoading(false);
   };
@@ -43,7 +45,10 @@ const Discover = ({ data, trending }) => {
         {movies?.map((movie, i) => (
           <>
             {loading ? (
-              <div className="flex justify-center overflow-hidden rounded-lg">
+              <div
+                className="flex justify-center overflow-hidden rounded-lg"
+                key={i}
+              >
                 <MyLoader />
               </div>
             ) : (
@@ -52,6 +57,7 @@ const Discover = ({ data, trending }) => {
                 key={i}
                 hoverCard={hoverCard}
                 setHoverCard={setHoverCard}
+                addToWishlist={addToWishlist}
               />
             )}
           </>
@@ -71,11 +77,16 @@ export default Discover;
 export async function getStaticProps(context) {
   // Fetch data from external API
   const res = await fetch(`${API_URL}/discover/1`);
-  const data = await res.json();
+  const data = await res?.json();
 
   const trendRes = await fetch(`${API_URL}/trending/1`);
-  const trending = await trendRes.json();
+  const trending = await trendRes?.json();
 
   // Pass data to the page via props
-  return { props: { data, trending: trending?.results } };
+  return {
+    props: {
+      data,
+      trending: trending?.results,
+    },
+  };
 }

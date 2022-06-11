@@ -32,12 +32,15 @@
 }
 
 .button__bar li.slick-active button {
-  background-color: #3a3434;
+  background-color: #ff5252;
+  width: 30px;
+  transition-duration: 0.5s;
+  transition-property: width;
 }
 
 .button__bar li button:hover,
 .button__bar li button:focus {
-  background: #3a3434;
+  background: #ff5252;
   outline: 0;
 }
 

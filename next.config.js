@@ -11,6 +11,7 @@ const nextConfig = {
       "image.tmdb.org",
       "img.icons8.com",
       "img.youtube.com",
+      "mir-s3-cdn-cf.behance.net",
     ],
     minimumCacheTTL: 604800,
   },

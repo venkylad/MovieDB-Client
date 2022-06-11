@@ -6,14 +6,18 @@ import "slick-carousel/slick/slick-theme.css";
 import "../styles/slick.css";
 import "react-pagination-js/dist/styles.css";
 import Link from "next/link";
+import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { ContextProvider } from "../Context/Context";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ContextProvider>
+      <Toaster />
       <Header />
       <Component {...pageProps} />
       <footer
-        className="text-center bg-pink-100"
+        className="mt-2 text-center bg-pink-100"
         style={{ boxShadow: "0px 2px 10px #80808061" }}
       >
         <div className="flex items-center justify-center p-4 text-center text-gray-700">
@@ -26,7 +30,7 @@ function MyApp({ Component, pageProps }) {
           </Link>
         </div>
       </footer>
-    </>
+    </ContextProvider>
   );
 }
 

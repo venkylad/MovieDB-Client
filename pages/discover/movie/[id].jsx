@@ -2,9 +2,9 @@ import Image from "next/image";
 const ModalVideo = dynamic(() => import("react-modal-video"), { ssr: false });
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import Card from "../../../Components/Card";
 import Jumbotron from "../../../Components/Jumbotron";
 import RecommendSlider from "../../../Components/RecommendSlider";
+import { API_URL } from "../../../utils/data";
 
 const Movie = ({ data, video, recommend, credits }) => {
   const [isOpen, setOpen] = useState(false);
@@ -67,7 +67,7 @@ const Movie = ({ data, video, recommend, credits }) => {
           </div>
         </div>
       </div>
-      <h2 className="w-full h-full pl-10 mt-6 text-2xl font-semibold md:text-3xl">
+      <h2 className="w-full h-full pl-10 mt-8 text-2xl font-semibold md:text-3xl">
         More Like This
       </h2>
       <div className="">
@@ -85,25 +85,23 @@ export default Movie;
 
 export async function getServerSideProps(context) {
   // Fetch data from external API
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${context?.params?.id}?api_key=d8e97d396562cfba24086104028f28e3`
-  );
-  const data = await res.json();
+  const res = await fetch(`${API_URL}/movie/${context?.params?.id}`);
+  const data = await res?.json();
 
   const videoRes = await fetch(
-    `https://api.themoviedb.org/3/movie/${context?.params?.id}/videos?api_key=d8e97d396562cfba24086104028f28e3&language=en-US`
+    `${API_URL}/movie/videos/${context?.params?.id}`
   );
-  const video = await videoRes.json();
+  const video = await videoRes?.json();
 
   const recommendedRes = await fetch(
-    `https://api.themoviedb.org/3/movie/${context?.params?.id}/similar?api_key=d8e97d396562cfba24086104028f28e3&language=en-US`
+    `${API_URL}/movie/recommendations/${context?.params?.id}`
   );
-  const recommend = await recommendedRes.json();
+  const recommend = await recommendedRes?.json();
 
   const creditsRes = await fetch(
-    `https://api.themoviedb.org/3/movie/${context?.params?.id}/credits?api_key=d8e97d396562cfba24086104028f28e3&language=en-US`
+    `${API_URL}/movie/cast/${context?.params?.id}`
   );
-  const credits = await creditsRes.json();
+  const credits = await creditsRes?.json();
 
   // Pass data to the page via props
   return {

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Imdb from "../images/imdb.png";
 import moment from "moment";
+import { Context } from "../Context/Context";
+import { useContext } from "react";
 
 const Jumbotron = ({ data, setOpen, setCurrVideo, slide, cast, video }) => {
   function runtime(a) {
@@ -8,6 +10,8 @@ const Jumbotron = ({ data, setOpen, setCurrVideo, slide, cast, video }) => {
     var minutes = a % 60;
     return `${hours}hr ${minutes}min`;
   }
+
+  const { addToWishlist } = useContext(Context);
   return (
     <>
       <div className="w-full h-[480px] grid-cols-2 flex relative rounded-xl overflow-hidden">
@@ -30,6 +34,7 @@ const Jumbotron = ({ data, setOpen, setCurrVideo, slide, cast, video }) => {
               height={40}
               objectFit="contain"
               objectPosition="center"
+              loading={"lazy"}
             />
             <p className="mr-2 -ml-2 text-sm text-gray-300 md:text-lg">
               {data?.vote_average}
@@ -84,7 +89,10 @@ const Jumbotron = ({ data, setOpen, setCurrVideo, slide, cast, video }) => {
                 >
                   Play Trailer
                 </button>
-                <button className="px-4 py-2 text-sm font-semibold duration-150 bg-blue-400 md:text-lg rounded-xl hover:scale-95">
+                <button
+                  onClick={() => addToWishlist(data)}
+                  className="px-4 py-2 text-sm font-semibold duration-150 bg-blue-400 md:text-lg rounded-xl hover:scale-95"
+                >
                   Add to wishlist
                 </button>
               </div>

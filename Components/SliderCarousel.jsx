@@ -18,8 +18,6 @@ const SliderCarousel = ({ trending }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
     arrows: false,
     responsiveClass: true,
     dots: true,
