@@ -1,1 +1,1 @@
-export const API_URL = "https://moviedb-server-ven.herokuapp.com/api";
+export const API_URL = "https://movie-db-server-capital-setu.vercel.app/api";
