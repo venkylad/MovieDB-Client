@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:8000/api";
+export const API_URL = "https://moviedb-server-ven.herokuapp.com/api";
