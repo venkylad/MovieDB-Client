@@ -1,13 +1,12 @@
+import "../styles/globals.css";
 import "../node_modules/react-modal-video/scss/modal-video.scss";
 import Header from "../Components/Header";
-import "../styles/globals.css";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/slick.css";
-import "react-pagination-js/dist/styles.css";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
 import { ContextProvider } from "../Context/Context";
 
 function MyApp({ Component, pageProps }) {
