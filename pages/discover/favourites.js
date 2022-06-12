@@ -6,7 +6,7 @@ import MyLoader from "../../Components/CardLoader";
 import toast from "react-hot-toast";
 import { Context } from "../../Context/Context";
 
-const favourites = () => {
+const Favourites = () => {
   const [movies, setMovies] = useState([]);
   const [hoverCard, setHoverCard] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ const favourites = () => {
       {user?.token !== undefined ? (
         <>
           <h1 className="pl-10 text-2xl font-bold underline md:text-3xl underline-offset-8">
-            {user?.name}'s Favourites.
+            {user?.name} Favourites.
           </h1>
           <div className="grid w-full grid-cols-2 gap-4 px-4 my-10 space-y-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {movies?.map((movie, i) => (
@@ -96,4 +96,4 @@ const favourites = () => {
   );
 };
 
-export default favourites;
+export default Favourites;
