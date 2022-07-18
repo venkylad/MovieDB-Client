@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "scss": "sass --whatch scss -o css"
+    "scss": "sass --whatch scss -o css",
+    "export": "npm run build && next export -o _static"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.1.3",
