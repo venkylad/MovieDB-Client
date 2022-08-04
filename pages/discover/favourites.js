@@ -17,8 +17,8 @@ const Favourites = () => {
     await axios
       .get(`${API_URL}/wishlist`, {
         headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
+          Authorization: `Bearer ${user?.token}`
+        }
       })
       .then((res) => {
         console.log("got response", res);
@@ -32,20 +32,20 @@ const Favourites = () => {
     await axios
       .delete(`${API_URL}/wishlist/${id}`, {
         headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
+          Authorization: `Bearer ${user?.token}`
+        }
       })
       .then((res) => {
         toast.success(res?.data?.message, {
           duration: 4000,
-          position: "top-right",
+          position: "top-right"
         });
         fetchFavourites();
       })
       .catch((err) =>
         toast.error(err?.response?.data?.message, {
           duration: 4000,
-          position: "top-right",
+          position: "top-right"
         })
       );
   };
@@ -83,12 +83,17 @@ const Favourites = () => {
                 )}
               </>
             ))}
+            {!loading && movies?.length === 0 && (
+              <h1 className="text-3xl font-bold text-red-600 text-center mx-auto">
+                Your Wishlist is empty.
+              </h1>
+            )}
           </div>
         </>
       ) : (
         <>
           <h1 className="pl-10 text-2xl font-bold underline md:text-3xl underline-offset-8">
-            To access Favourites.
+            Please login to access Favourites.
           </h1>
         </>
       )}

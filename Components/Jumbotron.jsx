@@ -37,7 +37,7 @@ const Jumbotron = ({ data, setOpen, setCurrVideo, slide, cast, video }) => {
               loading={"lazy"}
             />
             <p className="mr-2 -ml-2 text-sm text-gray-300 md:text-lg">
-              {data?.vote_average}
+              {String(data?.vote_average)?.slice(0, 3)}
             </p>
 
             {!slide && (

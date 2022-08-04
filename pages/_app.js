@@ -14,7 +14,9 @@ function MyApp({ Component, pageProps }) {
     <ContextProvider>
       <Toaster />
       <Header />
-      <Component {...pageProps} />
+      <div style={{ minHeight: "calc(100vh - 230px)" }}>
+        <Component {...pageProps} />
+      </div>
       <footer
         className="mt-2 text-center bg-pink-100"
         style={{ boxShadow: "0px 2px 10px #80808061" }}

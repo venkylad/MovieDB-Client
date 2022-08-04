@@ -10,7 +10,7 @@ const Login = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
+    password: ""
   });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -33,20 +33,20 @@ const Login = () => {
             "User Logged in Sucessfully, You will be redirected to Favourites Page",
             {
               duration: 4000,
-              position: "top-right",
+              position: "top-right"
             }
           );
           setFormData({
             email: "",
-            password: "",
+            password: ""
           });
-          setTimeout(() => router.push("/discover/favourites"), 1000);
+          setTimeout(() => router.push("/discover"), 1000);
         }
       })
       .catch((err) => {
         toast.error(err?.response?.data?.message, {
           duration: 4000,
-          position: "top-right",
+          position: "top-right"
         });
       });
     setLoading(false);
